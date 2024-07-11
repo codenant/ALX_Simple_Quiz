@@ -1,15 +1,16 @@
 function checkAnswer() {
     let correctAnswer = "4";
+
+    document.querySelectorAll('[name="quiz"]').forEach(radio => {
+        if (radio.checked)
+       userAnswer = radio.value
+    });
+    
+    if (userAnswer === correctAnswer) {
+        document.getElementById('feedback').textContent = "Correct! Well done.";
+    } else {
+        document.getElementById('feedback').textContent = "That's incorrect. Try again!";
+    }
 }
 
-let userAnswer = document.querySelector('[checked],[name="quiz"]').value;
-
-if (userAnswer === correctAnswer) {
-    document.getElementById("feedback").textContent = "Correct! Well done.";
-} else {
-    document.getElementById("feedback").textContent = "That's incorrect. Try again!";
-}
-
-let button = document.getElementById("submit-answer").addEventListener('click', () => {
-    checkAnswer
-});
+document.getElementById('submit-answer').addEventListener('click', checkAnswer);
